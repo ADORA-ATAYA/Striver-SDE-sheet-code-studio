@@ -1,0 +1,23 @@
+#include <bits/stdc++.h> 
+void sort012(int *arr, int n)
+{
+   //DUTCH NATIONAL FLAG ALGORITHM
+    int i=0,m=0,j=n-1;
+    while(m<=j)
+    {
+        if(arr[m]==0)
+        {
+           swap(arr[i],arr[m]);
+            i++;m++;
+        }
+        else if(arr[m]==1)
+        {
+           m++;
+        }
+        else
+        {
+            swap(arr[j],arr[m]);
+            j--;
+        }
+    }
+}

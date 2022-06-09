@@ -1,0 +1,23 @@
+#include <bits/stdc++.h> 
+void setZeros(vector<vector<int>> &mat)
+{
+    vector<pair<int,int>> v;
+    for(int i=0;i<mat.size();i++)
+    {
+        for(int j=0;j<mat[0].size();j++)
+        {
+            if(mat[i][j]==0)
+            {v.push_back({i,j});}
+        }
+    }
+    for(auto x:v){
+        int i=x.first,j=x.second;
+        if(mat[i][j]==0)
+            {
+                for(int k=0;k<mat.size();k++)
+                {mat[k][j]=0;}
+                for(int k=0;k<mat[0].size();k++)
+                {mat[i][k]=0;}
+            }
+    }
+}

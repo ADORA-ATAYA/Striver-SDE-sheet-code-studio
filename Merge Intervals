@@ -1,0 +1,29 @@
+#include <bits/stdc++.h> 
+
+bool comp(vector<int>&a,vector<int>&b)
+{
+    if(a[0]<b[0])return true;
+    else return false;
+}
+vector<vector<int>> mergeIntervals(vector<vector<int>> &inter)
+{
+    sort(inter.begin(),inter.end(),comp);
+    vector<int>curr(2);
+    curr[0] = inter[0][0];
+    curr[1]= inter[0][1];
+    vector<vector<int>>ans;
+    for(int i=1;i<inter.size();i++)
+    {
+        if(curr[1]>=inter[i][0])
+        {
+             curr[1]= max(curr[1],inter[i][1]);
+        }
+        else
+        {
+            ans.push_back(curr);
+           curr=inter[i];
+        }
+    }
+    ans.push_back(curr);
+    return ans;
+}

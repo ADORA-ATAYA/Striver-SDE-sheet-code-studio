@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+int findDuplicate(vector<int> &arr, int n){
+    int curr=0;
+    while(curr<n)
+  {
+      if(arr[curr]!=arr[arr[curr]])
+      {
+          swap(arr[arr[curr]],arr[curr]);
+      }
+        else
+        {
+            if(curr!=arr[curr])return arr[curr];
+            else curr++;
+        }
+  }
+    return -1;
+}

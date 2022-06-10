@@ -1,0 +1,44 @@
+#include <bits/stdc++.h> 
+
+long long merge(int i,int m,int j,long long *arr)
+{
+    long long inv=0;
+    int  n1 = m-i+1;
+    int n2 = j-m;
+    int a[n1],b[n2];
+    for(int k=0;k<n1;k++)a[k]=arr[i+k];
+    for(int k=0;k<n2;k++)b[k]=arr[m+k+1];
+    int u=0,v=0,k=i;
+    while(u<n1 and v<n2)
+    {
+        if(a[u]<=b[v]){
+            arr[k]=a[u];
+            u++;k++;
+        }
+        else{
+            arr[k]=b[v];
+            inv+=(n1-u);
+            v++;k++;
+        }
+    }
+    while(u<n1){arr[k++]=a[u++];}
+     while(v<n2){arr[k++]=b[v++];}
+    
+    return inv;
+}
+
+long long mergesort(int i,int j,long long *arr)
+{
+    long long inv=0;
+    if(i<j)
+    {
+        int m = i+(j-i)/2;
+        inv+=mergesort(i,m,arr);
+        inv+=mergesort(m+1,j,arr);
+        inv+=merge(i,m,j,arr);
+    }
+    return inv;
+}
+long long getInversions(long long *arr, int n){
+   return mergesort(0,n-1,arr);  
+}

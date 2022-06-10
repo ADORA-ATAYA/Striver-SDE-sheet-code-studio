@@ -1,0 +1,11 @@
+#include <bits/stdc++.h> 
+
+pair<int,int> missingAndRepeating(vector<int>& arr, int n)
+{
+   map<int,int>m;
+    int a,b;
+    for(auto x:arr){m[x]++;if(m[x]==2)a=x;}
+    for(int i=1;i<=n;i++)
+    {if(m[i]==0)b=i;}
+    return {b,a};
+}

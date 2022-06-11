@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+int len;
+Node* solver(Node* head,int i,int n,int b[])
+{
+     if(!head)return head;
+    if(i>=n)return head;
+    Node* prev=NULL;
+    Node* curr=head;
+    Node* nxt;
+    int h=b[i];
+    while(curr and h)
+    {
+        nxt=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=nxt;
+        h--;
+    }
+    if(prev==NULL)return solver(curr,i+1,n,b);
+    head->next = solver(curr,i+1,n,b);
+    return prev;
+}
+Node *getListAfterReverseOperation(Node *head, int n, int b[]){
+return solver(head,0,n,b);
+}

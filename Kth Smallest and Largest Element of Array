@@ -1,0 +1,25 @@
+
+#include<bits/stdc++.h>
+vector<int> kthSmallLarge(vector<int> &arr, int n, int k)
+{
+	priority_queue<int,vector<int>,greater<int>> mn;
+    priority_queue<int> mx;
+    int a,b;
+    for(auto x:arr)
+    {
+        mx.push(x);
+        mn.push(x);
+    }
+    int h=k;
+    while(!mx.empty() and h--)
+    {
+        b = mx.top();
+        mx.pop();
+    }
+    while(!mn.empty() and k--)
+    {
+        a = mn.top();
+        mn.pop();
+    }
+    return {a,b};
+}

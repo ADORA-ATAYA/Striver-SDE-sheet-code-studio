@@ -1,0 +1,31 @@
+#include <bits/stdc++.h> 
+int cnt;
+void merge(int i,int mid,int j,vector<int> &arr)
+{
+    int u=i;
+    int v=mid+1;
+    while(u<=mid and v<=j)
+    {
+        if(arr[u]>2*arr[v])
+        {
+            cnt+=mid-u+1;
+            v++;
+        }
+        else u++;
+    }
+    
+    sort(arr.begin()+i,arr.begin()+j+1);
+}
+void mergesort(int i,int j,vector<int> &arr)
+{
+    if(i<j)
+   { int mid = i+(j-i)/2;
+    mergesort(i,mid,arr);
+    mergesort(mid+1,j,arr);
+    merge(i,mid,j,arr);}
+}
+int reversePairs(vector<int> &arr, int n){
+    cnt=0;
+    mergesort(0,n-1,arr);
+    return cnt;
+}

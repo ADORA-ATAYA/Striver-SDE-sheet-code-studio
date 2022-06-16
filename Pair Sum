@@ -1,0 +1,23 @@
+#include <bits/stdc++.h> 
+bool cmp(vector<int>& a,vector<int>&b)
+{
+    if(a[0]<b[0])return true;
+    return false;
+}
+vector<vector<int>> pairSum(vector<int> &arr, int s){
+  vector<vector<int>> ans;
+    map<int,int>m;
+    for(int i=0;i<arr.size();i++)
+    {
+        if(m[s-arr[i]])
+        {
+            int h = m[s-arr[i]];
+            while(h--)
+           { if(s-arr[i]<=arr[i])ans.push_back({s-arr[i],arr[i]});
+            else ans.push_back({arr[i],s-arr[i]});}
+        }
+        m[arr[i]]++;
+    }
+    sort(ans.begin(),ans.end(),cmp);
+    return ans;
+}

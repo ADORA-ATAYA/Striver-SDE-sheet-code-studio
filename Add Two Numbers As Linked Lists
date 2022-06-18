@@ -1,0 +1,45 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+	        Node *next;
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+        };
+
+*****************************************************************/
+Node *addTwoNumbers(Node *head1, Node *head2)
+{
+    Node* a = head1;
+    Node* b = head2;
+    int cry=0;
+    Node* nhead=NULL;
+    Node* curr;
+    while(a or b){
+        int sm = (a?a->data:0)+(b?b->data:0)+cry;
+        cry = (sm>=10)?1:0;
+        sm=sm%10;
+        if(nhead==NULL){
+            nhead = new Node(sm);
+            curr = nhead;
+        }
+        else{
+            curr->next = new Node(sm);
+            curr=curr->next;
+        }
+        if(a)a=a->next;
+        if(b)b=b->next;
+    }
+    if(cry){
+          curr->next = new Node(cry);
+    }
+    return nhead;
+}

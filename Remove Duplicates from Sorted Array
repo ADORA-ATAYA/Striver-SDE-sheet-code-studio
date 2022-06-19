@@ -1,0 +1,16 @@
+int removeDuplicates(vector<int> &arr, int n) {
+    int i=1;
+    int strt=0;
+    while(i<n){
+        if(arr[strt]==arr[i]){
+            i++;
+        }else{
+            swap(arr[strt+1],arr[i]);
+            strt++;
+            i++;
+        }
+    }
+    strt++;
+    while(strt<n){arr.pop_back();strt++;}
+    return arr.size();
+}

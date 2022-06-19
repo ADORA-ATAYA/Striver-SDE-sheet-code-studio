@@ -1,0 +1,15 @@
+int longestSubSeg(vector<int> &arr , int n, int k){
+    
+    int strt=0,zero=0;
+    int ans=0;
+    for(int end=0;end<n;end++){
+        if(arr[end]==0)zero++;
+        while(zero>k){
+            if(arr[strt]==0)zero--;
+            strt++;
+        }
+        ans=max(ans,end-strt+1);
+    }  
+    return ans;
+    
+}

@@ -1,0 +1,17 @@
+void sol(int i,vector<int>num,vector<int>&ans,int sum){
+    if(i==num.size()){
+        ans.push_back(sum);
+        return;
+    }
+    sol(i+1,num,ans,sum+num[i]);
+     sol(i+1,num,ans,sum);
+}
+
+
+vector<int> subsetSum(vector<int> &num)
+{
+    vector<int>ans;
+    sol(0,num,ans,0);
+    sort(ans.begin(),ans.end());
+    return ans;
+}

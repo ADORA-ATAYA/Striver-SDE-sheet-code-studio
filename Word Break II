@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+void solver(int idx,string s,vector<string>&ans,map<string,int>m,string str){
+    
+    if(idx==s.length()){
+        ans.push_back(str);
+        return;
+    }
+    for(int i=idx;i<s.length();i++){
+        if(m[s.substr(idx,i-idx+1)]){
+            solver(i+1,s,ans,m,str+s.substr(idx,i-idx+1)+" ");
+        }
+    }
+}
+
+vector<string> wordBreak(string &s, vector<string> &dic)
+{
+   map<string,int>m;
+    for(auto x:dic){
+        m[x]++;
+    }
+    vector<string>ans;
+    string d="";
+    solver(0,s,ans,m,d);
+    return ans;
+}

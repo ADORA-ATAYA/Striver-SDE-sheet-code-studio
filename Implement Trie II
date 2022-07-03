@@ -1,0 +1,60 @@
+struct Node{
+  Node* a[26]={NULL};
+    int end=0;
+    int cnt=0;
+};
+class Trie{
+    public:
+    Node* root;
+    Trie(){
+        root=new Node();
+    }
+
+    void insert(string &word){
+        Node* curr=root;
+        for(auto x:word){
+            if(curr->a[x-'a']==NULL){
+                curr->a[x-'a'] = new Node();
+            }
+            curr=curr->a[x-'a'];
+            curr->cnt++;
+        }
+        curr->end++;
+    }
+
+    int countWordsEqualTo(string &word){
+         Node* curr=root;
+        for(auto x:word){
+            if(curr->a[x-'a']==NULL){
+                return 0;
+            }
+            curr=curr->a[x-'a'];
+        }
+        return curr->end;
+    }
+
+    int countWordsStartingWith(string &word){
+        Node* curr=root;
+        for(auto x:word){
+            if(curr->a[x-'a']==NULL){
+                return 0;
+            }
+            curr=curr->a[x-'a'];
+        }
+        return curr->cnt;
+    }
+
+   void solver(string word,int i,Node* curr){
+        if(curr->a[word[i]-'a']==NULL){
+            curr->cnt-=1;
+            curr->end-=1;
+            return;
+        }
+       solver(word,i+1,curr->a[word[i]-'a']); 
+          curr->cnt-=1;
+    }
+    void erase(string &word){
+        Node* curr=root;
+        solver(word,0,curr);
+    }
+};

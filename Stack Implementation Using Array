@@ -1,0 +1,43 @@
+// Stack class.
+class Stack {
+    
+public:
+    int stk[10001];
+    int toop=0;
+    int cap;
+    Stack(int capacity) {
+        cap=capacity;
+        int stk[cap];
+    }
+
+    void push(int num) {
+        if(toop<cap)
+        {stk[toop++]=num;}
+    }
+
+    int pop() {
+        int x;
+       if(toop>0){
+           x=stk[toop-1];
+           toop--;
+           return x;
+       }
+        return -1;
+    }
+    
+    int top() {
+        if(toop>0 and toop<=cap)return stk[toop-1];
+        return -1;
+    }
+    
+    int isEmpty() {
+        if(toop==0)return true;
+        return false;
+    }
+    
+    int isFull() {
+        if(toop==cap)return true;
+        return false;
+    }
+    
+};

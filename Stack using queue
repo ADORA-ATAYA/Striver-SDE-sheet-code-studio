@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+class Stack {
+
+   public:
+    vector<int> v;
+    Stack() {
+        // Implement the Constructor.
+    }
+
+    /*----------------- Public Functions of Stack -----------------*/
+
+    int getSize() {
+        return v.size();
+    }
+
+    bool isEmpty() {
+        if(v.empty())return true;
+        return false;
+    }
+
+    void push(int element) {
+       v.push_back(element);
+    }
+
+    int pop() {
+       if(v.size()>0){
+           int x = v[v.size()-1];
+           v.pop_back();
+           return x;
+       }
+        return -1;
+    }
+
+    int top() {
+        if(v.size()>0){
+            return v[v.size()-1];
+        }
+        return -1;
+    }
+};

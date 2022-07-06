@@ -1,0 +1,32 @@
+class Queue {
+public:
+    vector<int>v;
+    int frnt=-1;
+    Queue() {
+        frnt=0;
+    }
+
+    /*----------------- Public Functions of Queue -----------------*/
+
+    bool isEmpty() {
+        if(frnt==v.size())return true;
+        return false;
+    }
+
+    void enqueue(int data) {
+        v.push_back(data);
+    }
+
+    int dequeue() {
+       if(frnt<v.size()){
+           return v[frnt++];
+       }
+        return -1;
+    }
+
+    int front() {
+        
+        if(frnt<v.size())return v[frnt];
+        return -1;
+    }
+};

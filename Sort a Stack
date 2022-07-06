@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+
+void insertit(stack<int> &s,int x){
+    if(s.empty() or s.top()<x)
+    {
+        s.push(x);
+        return;
+    }
+    int a = s.top();
+    s.pop();
+    insertit(s,x);
+    s.push(a);
+}
+void sortStack(stack<int> &stack)
+{
+	if(stack.empty())
+    {
+        return;
+    }
+    int x =stack.top();
+    stack.pop();
+    sortStack(stack);
+    insertit(stack,x);
+}

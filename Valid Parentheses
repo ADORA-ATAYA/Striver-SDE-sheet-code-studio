@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+bool isValidParenthesis(string exp)
+{
+    stack<char>s;
+    
+    for(auto x:exp){
+        if(x=='{' or x=='(' or x=='['){
+            s.push(x);
+        }
+        else{
+            if(s.empty())return false;
+            if(x=='}' and s.top()=='{'){
+                s.pop();
+            }else if(x==')' and s.top()=='('){
+                s.pop();
+            }else if(x==']' and s.top()=='['){
+                s.pop();
+            }else return false;
+        }
+    }
+    if(!s.empty())return false;
+    return true;
+}

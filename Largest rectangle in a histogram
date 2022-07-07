@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+
+    vector<int> findleft(vector<int>& h)
+    {
+        vector<int>ans;
+        stack<int> s;
+        for(int i=0;i<h.size();i++)
+        {
+            while(!s.empty() and h[s.top()]>=h[i])s.pop();
+            if(s.empty())
+            {
+                ans.push_back(-1);
+            }
+            else
+            {
+                ans.push_back(s.top());
+            }
+            s.push(i);
+        }
+        return ans;
+    }
+    
+      vector<int> findright(vector<int>& h)
+    {
+        vector<int>ans(h.size());
+        stack<int> s;
+        for(int i=h.size()-1;i>=0;i--)
+        {
+            while(!s.empty() and h[s.top()]>=h[i])s.pop();
+            if(s.empty())
+            {
+                ans[i]=h.size();
+            }
+            else
+            {
+                ans[i] = s.top();
+            }
+            s.push(i);
+        }
+        return ans;
+    }
+int largestRectangle(vector < int > & heights) {
+   
+    vector<int>right = findright(heights);
+     vector<int>left = findleft(heights);
+    int ans=INT_MIN;
+    for(int i=0;i<heights.size();i++){
+        int x = (right[i]-left[i]-1)*heights[i];
+        ans=max(ans,x);
+    }
+    return ans;
+ }
